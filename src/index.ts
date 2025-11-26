@@ -35,6 +35,6 @@ app.post('/debate', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`jury-ai listening on ${PORT}`);
+  console.log(\`jury-ai listening on \${PORT}\`);
 });
 EOF
