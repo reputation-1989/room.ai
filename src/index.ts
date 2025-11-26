@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 // tiny id generator — no external library needed
 function makeId() {
-  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2,9)}`;
+  return \`\${Date.now().toString(36)}-\${Math.random().toString(36).slice(2,9)}\`;
 }
 
 app.get('/', (_req, res) => res.send('jury-ai orchestrator (prototype)'));
