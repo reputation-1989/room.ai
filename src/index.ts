@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import { v4 as uuidv4 } from 'uuid';
 import { orchestrateJob } from './orchestrator';
 
 dotenv.config();
@@ -9,6 +8,11 @@ const app = express();
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
+
+// tiny id generator — no external library needed
+function makeId() {
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2,9)}`;
+}
 
 app.get('/', (_req, res) => res.send('jury-ai orchestrator (prototype)'));
 
@@ -19,7 +23,7 @@ app.post('/debate', async (req, res) => {
     return res.status(400).json({ error: 'Provide prompt and at least two models' });
   }
 
-  const jobId = uuidv4();
+  const jobId = makeId();
   try {
     const result = await orchestrateJob({ jobId, prompt, models, mode });
     res.json({ jobId, result });
