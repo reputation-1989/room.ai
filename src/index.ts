@@ -1,3 +1,4 @@
+cat > src/index.ts <<'EOF'
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
@@ -36,3 +37,4 @@ app.post('/debate', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`jury-ai listening on ${PORT}`);
 });
+EOF
